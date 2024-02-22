@@ -9,9 +9,9 @@
 
 <!-- View Lists -->
 <div *ngFor="let list of lists; let i = index">
-  <h2 (click)="selectList(i)">List {{ i + 1 }} - {{ list.length }} items</h2>
+  <h2 (click)="selectList(i)">{{ list.name }} - {{ list.items.length }} items</h2>
   <ul *ngIf="selectedListIndex === i">
-    <li *ngFor="let item of list; let j = index">
+    <li *ngFor="let item of list.items; let j = index">
       <input type="checkbox" [(ngModel)]="item.completed"> {{ item.text }}
       <button (click)="deleteItem(i, j)">Delete</button>
     </li>

@@ -2,9 +2,13 @@
 
 import { Component } from '@angular/core';
 import { ListItem } from './app-list-item/app-list-item.component'; // Update the path
-import { CommonModule,  } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+interface List {
+  name: string;
+  items: ListItem[];
+}
 
 @Component({
   standalone: true,
@@ -16,13 +20,14 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent {
   title = 'My To-Do List';
 
-  lists: ListItem[][] = [[]];
+  lists: List[] = [];
   newListName: string = '';
   selectedListIndex: number = -1;
 
   addList() {
     if (this.newListName) {
-      this.lists.push([]);
+      const newList: List = { name: this.newListName, items: [] };
+      this.lists.push(newList);
       this.newListName = '';
     }
   }
@@ -33,12 +38,12 @@ export class AppComponent {
 
   addItem(newItem: string) {
     if (newItem && this.selectedListIndex !== -1) {
-      this.lists[this.selectedListIndex].push({ text: newItem, completed: false });
+      this.lists[this.selectedListIndex].items.push({ text: newItem, completed: false });
     }
   }
 
   deleteItem(listIndex: number, itemIndex: number) {
-    this.lists[listIndex].splice(itemIndex, 1);
+    this.lists[listIndex].items.splice(itemIndex, 1);
   }
 
   deleteList(index: number) {

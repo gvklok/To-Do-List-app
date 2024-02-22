@@ -1,48 +1,29 @@
-// app.component.ts
+import { TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
 
-import { Component } from '@angular/core';
-import { ListItem } from './app-list-item/app-list-item.component'; // Update the path
-import { CommonModule,  } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+describe('AppComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
+    }).compileComponents();
+  });
 
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
 
-@Component({
-  standalone: true,
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  imports: [CommonModule, FormsModule]
-})
-export class AppComponent {
-  title = 'My To-Do List';
+  it(`should have the 'ToDoList' title`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('ToDoList');
+  });
 
-  lists: ListItem[][] = [[]];
-  newListName: string = '';
-  selectedListIndex: number = -1;
-
-  addList() {
-    if (this.newListName) {
-      this.lists.push([]);
-      this.newListName = '';
-    }
-  }
-
-  selectList(index: number) {
-    this.selectedListIndex = index;
-  }
-
-  addItem(newItem: string) {
-    if (newItem && this.selectedListIndex !== -1) {
-      this.lists[this.selectedListIndex].push({ text: newItem, completed: false });
-    }
-  }
-
-  deleteItem(listIndex: number, itemIndex: number) {
-    this.lists[listIndex].splice(itemIndex, 1);
-  }
-
-  deleteList(index: number) {
-    this.lists.splice(index, 1);
-    this.selectedListIndex = -1; // Reset selected list index
-  }
-}
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ToDoList');
+  });
+});
