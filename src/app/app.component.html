@@ -1,1 +1,20 @@
-<p>app-list works!</p>
+<!-- app.component.html -->
+<h1>{{ title }}</h1>
+
+<!-- Create New List -->
+<div>
+  <input type="text" [(ngModel)]="newListName" placeholder="Enter new list name">
+  <button (click)="addList()">Add List</button>
+</div>
+
+<!-- View Lists -->
+<div *ngFor="let list of lists; let i = index">
+  <h2 (click)="selectList(i)">List {{ i + 1 }} - {{ list.length }} items</h2>
+  <ul *ngIf="selectedListIndex === i">
+    <li *ngFor="let item of list; let j = index">
+      <input type="checkbox" [(ngModel)]="item.completed"> {{ item.text }}
+      <button (click)="deleteItem(i, j)">Delete</button>
+    </li>
+  </ul>
+  <button (click)="deleteList(i)">Delete List</button>
+</div>

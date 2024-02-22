@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 interface ListItem {
   text: string;
@@ -10,7 +11,8 @@ interface ListItem {
   selector: 'app-list',
   standalone: true,
   templateUrl: './app-list.component.html',
-  styleUrls: ['./app-list.component.css']
+  styleUrls: ['./app-list.component.css'],
+  imports: [CommonModule]
 })
 export class AppListComponent {
   @Input() list: ListItem[] = [];

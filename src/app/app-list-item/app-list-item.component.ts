@@ -1,27 +1,29 @@
+// app-list-item.component.ts
+import { CommonModule } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 
-interface ListItem {
+export interface ListItem {
   text: string;
   completed: boolean;
   dueDate?: Date;
-  
 }
 
 @Component({
-  selector: 'app-list-item',
   standalone: true,
+  selector: 'app-list-item',
   templateUrl: './app-list-item.component.html',
-  styleUrls: ['./app-list-item.component.css']
-
+  styleUrls: ['./app-list-item.component.css'],
+  imports: [CommonModule]
 })
 export class AppListItemComponent {
   @Input() item: ListItem;
 
   constructor() {
-    // Optionally initialize the item with an empty object
-    // if it's not guaranteed to be provided through input binding:
+    // Initialize the item with an empty object
     this.item = { text: '', completed: false };
   }
+
   toggleCompletion() {
     this.item.completed = !this.item.completed;
   }

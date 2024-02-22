@@ -1,54 +1,48 @@
-import { Component } from '@angular/core';
+// app.component.ts
 
-interface ListItem {
-  text: string;
-  completed: boolean;
-  dueDate?: Date;
-}
+import { Component } from '@angular/core';
+import { ListItem } from './app-list-item/app-list-item.component'; // Update the path
+import { CommonModule,  } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
-  selector: 'app-root',
   standalone: true,
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  imports: [CommonModule, FormsModule]
 })
 export class AppComponent {
-  title = 'My To-Do List'; 
+  title = 'My To-Do List';
 
-  lists: ListItem[][] = [];
+  lists: ListItem[][] = [[]];
   newListName: string = '';
+  selectedListIndex: number = -1;
 
   addList() {
     if (this.newListName) {
       this.lists.push([]);
-      localStorage.setItem('lists', JSON.stringify(this.lists));
       this.newListName = '';
     }
   }
 
-  // Receive events from child components for adding and deleting items/lists
-  addNewItem(listIndex: number, newItem: string) {
-    this.lists[listIndex].push({ text: newItem, completed: false }); // Add the new item to the list
-    localStorage.setItem('lists', JSON.stringify(this.lists));
+  selectList(index: number) {
+    this.selectedListIndex = index;
   }
-  
+
+  addItem(newItem: string) {
+    if (newItem && this.selectedListIndex !== -1) {
+      this.lists[this.selectedListIndex].push({ text: newItem, completed: false });
+    }
+  }
 
   deleteItem(listIndex: number, itemIndex: number) {
     this.lists[listIndex].splice(itemIndex, 1);
-    localStorage.setItem('lists', JSON.stringify(this.lists));
   }
 
-  deleteList(listIndex: number) {
-    this.lists.splice(listIndex, 1);
-    localStorage.setItem('lists', JSON.stringify(this.lists));
+  deleteList(index: number) {
+    this.lists.splice(index, 1);
+    this.selectedListIndex = -1; // Reset selected list index
   }
-
-  ngOnInit() {
-    if (typeof localStorage !== 'undefined') {
-      const storedLists = localStorage.getItem('lists');
-      if (storedLists) {
-        this.lists = JSON.parse(storedLists);
-      }
-    }
-  }
-}  
+}

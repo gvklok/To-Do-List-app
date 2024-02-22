@@ -1,1 +1,11 @@
-<p>app-list works!</p>
+<!-- app-list.component.html -->
+<div>
+    <h2>Lists</h2>
+    <ul>
+      <li *ngFor="let item of list; let i = index">
+        {{ item.text }}
+        <button (click)="deleteItem(i)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  
