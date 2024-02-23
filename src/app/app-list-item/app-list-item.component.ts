@@ -1,8 +1,7 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Component, Input } from '@angular/core';
-
-export interface ListItem {
+interface ListItem {
   text: string;
   completed: boolean;
   dueDate?: Date;
@@ -15,8 +14,9 @@ export interface ListItem {
   styleUrls: ['./app-list-item.component.css'],
   imports: [CommonModule]
 })
-export class AppListItemComponent {
+export class ItemComponent {
   @Input() item: ListItem;
+  @Output() toggle = new EventEmitter();
 
   constructor() {
     this.item = { text: '', completed: false };
@@ -24,9 +24,20 @@ export class AppListItemComponent {
 
   toggleCompletion() {
     this.item.completed = !this.item.completed;
+    this.toggle.emit();
   }
 
   isPastDue(dueDate: Date | undefined): boolean {
     return dueDate !== undefined && dueDate < new Date();
+  }
+
+  get dueDateColor(): string {
+    if (this.isPastDue(this.item.dueDate)) {
+      return 'red';
+    } else if (this.item.dueDate) {
+      return 'green';
+    } else {
+      return 'black'; // Default color for no due date
+    }
   }
 }

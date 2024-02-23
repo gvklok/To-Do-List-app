@@ -1,13 +1,18 @@
-// app.component.ts
-
 import { Component } from '@angular/core';
-import { ListItem } from './app-list-item/app-list-item.component'; // Update the path
+import { ItemComponent } from './app-list-item/app-list-item.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+
 interface List {
   name: string;
-  items: ListItem[];
+  items: ListItem[]; // Array of ListItem objects
+}
+
+interface ListItem {
+  text: string;
+  completed: boolean;
+  dueDate?: Date;
 }
 
 @Component({
@@ -15,16 +20,18 @@ interface List {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, ItemComponent, FormsModule]
 })
 export class AppComponent {
-  title = 'My To-Do List';
+  title = 'Create a new to do list';
 
-  lists: List[] = [];
+  lists: List[] = [
+    { name: 'My List', items: [] }
+  ];
   newListName: string = '';
   selectedListIndex: number = -1;
-  newItemText: string = ''; // Declare newItemText property
-  newItemDueDate: string = ''; // Declare newItemDueDate property
+  newItemText: string = '';
+  newItemDueDate: string = '';
 
   addList() {
     if (this.newListName) {
@@ -41,15 +48,15 @@ export class AppComponent {
   addItem() {
     if (this.newItemText && this.selectedListIndex !== -1) {
       const dueDate = this.newItemDueDate ? new Date(this.newItemDueDate) : undefined;
-      this.lists[this.selectedListIndex].items.push({ text: this.newItemText, completed: false, dueDate: dueDate });
-      this.newItemText = ''; // Reset newItemText
-      this.newItemDueDate = ''; // Reset newItemDueDate
+      this.lists[this.selectedListIndex].items.push({
+        text: this.newItemText,
+        completed: false,
+        dueDate: dueDate
+      });
+      this.newItemText = '';
+      this.newItemDueDate = '';
     }
   }
-  isPastDue(dueDate: Date): boolean {
-    return dueDate < new Date();
-  }
-  
 
   deleteItem(listIndex: number, itemIndex: number) {
     this.lists[listIndex].items.splice(itemIndex, 1);
@@ -57,6 +64,10 @@ export class AppComponent {
 
   deleteList(index: number) {
     this.lists.splice(index, 1);
-    this.selectedListIndex = -1; // Reset selected list index
+    this.selectedListIndex = -1;
+  }
+  onToggle(event: any, listIndex: number, itemIndex: number) {
+    // Handle the toggle event (e.g., update the item's completed status)
+    this.lists[listIndex].items[itemIndex].completed = !this.lists[listIndex].items[itemIndex].completed;
   }
 }
