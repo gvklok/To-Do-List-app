@@ -23,6 +23,8 @@ export class AppComponent {
   lists: List[] = [];
   newListName: string = '';
   selectedListIndex: number = -1;
+  newItemText: string = ''; // Declare newItemText property
+  newItemDueDate: string = ''; // Declare newItemDueDate property
 
   addList() {
     if (this.newListName) {
@@ -36,11 +38,18 @@ export class AppComponent {
     this.selectedListIndex = index;
   }
 
-  addItem(newItem: string) {
-    if (newItem && this.selectedListIndex !== -1) {
-      this.lists[this.selectedListIndex].items.push({ text: newItem, completed: false });
+  addItem() {
+    if (this.newItemText && this.selectedListIndex !== -1) {
+      const dueDate = this.newItemDueDate ? new Date(this.newItemDueDate) : undefined;
+      this.lists[this.selectedListIndex].items.push({ text: this.newItemText, completed: false, dueDate: dueDate });
+      this.newItemText = ''; // Reset newItemText
+      this.newItemDueDate = ''; // Reset newItemDueDate
     }
   }
+  isPastDue(dueDate: Date): boolean {
+    return dueDate < new Date();
+  }
+  
 
   deleteItem(listIndex: number, itemIndex: number) {
     this.lists[listIndex].items.splice(itemIndex, 1);

@@ -1,4 +1,3 @@
-// app-list-item.component.ts
 import { CommonModule } from '@angular/common';
 
 import { Component, Input } from '@angular/core';
@@ -20,11 +19,14 @@ export class AppListItemComponent {
   @Input() item: ListItem;
 
   constructor() {
-    // Initialize the item with an empty object
     this.item = { text: '', completed: false };
   }
 
   toggleCompletion() {
     this.item.completed = !this.item.completed;
+  }
+
+  isPastDue(dueDate: Date | undefined): boolean {
+    return dueDate !== undefined && dueDate < new Date();
   }
 }
