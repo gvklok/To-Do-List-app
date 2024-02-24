@@ -25,9 +25,7 @@ interface ListItem {
 export class AppComponent {
   title = 'Create a new to do list';
 
-  lists: List[] = [
-    { name: 'My List', items: [] }
-  ];
+  lists: List[] = [];
   newListName: string = '';
   selectedListIndex: number = -1;
   newItemText: string = '';
@@ -66,8 +64,8 @@ export class AppComponent {
     this.lists.splice(index, 1);
     this.selectedListIndex = -1;
   }
-  onToggle(event: any, listIndex: number, itemIndex: number) {
+  onToggle(item: ListItem, listIndex: number, itemIndex: number) {
     // Handle the toggle event (e.g., update the item's completed status)
     this.lists[listIndex].items[itemIndex].completed = !this.lists[listIndex].items[itemIndex].completed;
-  }
+  }  
 }

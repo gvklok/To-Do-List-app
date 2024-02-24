@@ -1,11 +1,12 @@
 <div class="list-item" [ngClass]="{ 'past-due': isPastDue(item.dueDate) }">
-  <span class="list-item-text" [ngClass]="{ 'completed': item.completed }">
+  <button class="list-item-delete" (click)="toggleCompletion()">
+    <i class="material-icons">{{ item.completed ? 'done' : 'not done' }}</i>
+  </button> 
+  <span class="list-item-text">
     {{ item.text }}
   </span>
   <span *ngIf="item.dueDate" [ngStyle]="{ color: isPastDue(item.dueDate) ? 'red' : 'green' }">
     (Due: {{ item.dueDate | date:'shortDate' }})
   </span>
-  <button class="list-item-delete" (click)="toggleCompletion()">
-    <i class="material-icons">check_circle</i>
-  </button>
+   
 </div>

@@ -10,10 +10,10 @@
   <ul *ngIf="selectedListIndex === i">
     <li *ngFor="let item of list.items; let j = index">
       <app-list-item
-        [item]="item"
-        (toggle)="onToggle($event, i, j)"
-        [style.color]="item.completed ? 'graytext' : ''"
-      ></app-list-item>
+  [item]="item"
+  (toggle)="onToggle($event, i, j)"
+  [style.color]="item.completed ? 'graytext' : ''"
+></app-list-item>
     </li>
     <li>
       <input type="text" [(ngModel)]="newItemText" placeholder="Enter new item">

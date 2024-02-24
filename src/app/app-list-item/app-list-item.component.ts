@@ -23,9 +23,9 @@ export class ItemComponent {
   }
 
   toggleCompletion() {
-    this.item.completed = !this.item.completed;
-    this.toggle.emit();
+    this.toggle.emit(this.item);
   }
+  
 
   isPastDue(dueDate: Date | undefined): boolean {
     return dueDate !== undefined && dueDate < new Date();
