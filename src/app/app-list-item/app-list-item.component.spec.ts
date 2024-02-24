@@ -1,23 +1,33 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AppListItemComponent } from './app-list-item.component';
+import { ItemComponent } from './app-list-item.component';
 
 describe('AppListItemComponent', () => {
-  let component: AppListItemComponent;
-  let fixture: ComponentFixture<AppListItemComponent>;
+  let component: ItemComponent;
+  let fixture: ComponentFixture<ItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppListItemComponent]
+      declarations: [ItemComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(AppListItemComponent);
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ItemComponent);
     component = fixture.componentInstance;
+    component.item = { text: 'Test Item', completed: false };
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should toggle completion', () => {
+    expect(component.item.completed).toBeFalsy();
+    component.toggleCompletion();
+    expect(component.item.completed).toBeTruthy();
+  });
+
+  // Add more tests as needed...
 });

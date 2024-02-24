@@ -64,8 +64,5 @@ export class AppComponent {
     this.lists.splice(index, 1);
     this.selectedListIndex = -1;
   }
-  onToggle(item: ListItem, listIndex: number, itemIndex: number) {
-    // Handle the toggle event (e.g., update the item's completed status)
-    this.lists[listIndex].items[itemIndex].completed = !this.lists[listIndex].items[itemIndex].completed;
-  }  
+  
 }

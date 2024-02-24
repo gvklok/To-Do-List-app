@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface ListItem {
   text: string;
@@ -12,7 +13,7 @@ interface ListItem {
   selector: 'app-list-item',
   templateUrl: './app-list-item.component.html',
   styleUrls: ['./app-list-item.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, FormsModule]
 })
 export class ItemComponent {
   @Input() item: ListItem;
@@ -23,7 +24,7 @@ export class ItemComponent {
   }
 
   toggleCompletion() {
-    this.toggle.emit(this.item);
+    this.item.completed = !this.item.completed;
   }
   
 
