@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ItemComponent } from './app-list-item/app-list-item.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 interface List {
@@ -20,7 +22,7 @@ interface ListItem {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [CommonModule, ItemComponent, FormsModule]
+  imports: [CommonModule, ItemComponent, FormsModule, RouterModule]
 })
 export class AppComponent {
   title = 'Create a new to do list';
@@ -64,5 +66,5 @@ export class AppComponent {
     this.lists.splice(index, 1);
     this.selectedListIndex = -1;
   }
-  
+
 }

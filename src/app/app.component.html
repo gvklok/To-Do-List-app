@@ -3,6 +3,9 @@
 <div>
   <input type="text" [(ngModel)]="newListName" placeholder="Enter new list name">
   <button (click)="addList()">Add List</button>
+  <a routerLink="calendar" target="_top">View Calendar</a>
+  <router-outlet></router-outlet>
+
 </div>
 
 <div *ngFor="let list of lists; let i = index">
