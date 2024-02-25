@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ItemComponent } from './app-list-item/app-list-item.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 interface List {
   name: string;
@@ -19,8 +24,8 @@ interface ListItem {
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  imports: [CommonModule, FormsModule, ItemComponent]
+  styleUrls: ['./app.component.scss'],
+  imports: [CommonModule, FormsModule, ItemComponent, MatSlideToggleModule, MatButtonModule,MatIconModule]
 })
 export class AppComponent {
   title = 'Create a new to do list';
@@ -64,10 +69,23 @@ this.filterLists(this.filterTag)
   }
 
   selectList(index: number) {
-    this.selectedListIndex = index;
+    if (this.selectedListIndex === index) {
+      this.selectedListIndex = -1; // Deselect the list
+    } else {
+      this.selectedListIndex = index; // Select the clicked list
+    }
+  }
+  toggleList(index: number) {
+    if (this.selectedListIndex === index) {
+      this.selectedListIndex = -1; // Deselect the list
+    } else {
+      this.selectedListIndex = index; // Select the clicked list
+    }
   }
 
-  addItem() {
+  addItem(event: Event) {
+    event.stopPropagation(); // Prevent event from propagating to parent
+
     if (this.newItemText && this.selectedListIndex !== -1) {
       const dueDate = this.newItemDueDate ? new Date(this.newItemDueDate) : undefined;
       this.lists[this.selectedListIndex].items.push({

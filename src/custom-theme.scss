@@ -1,0 +1,59 @@
+@use '@angular/material' as mat;
+
+// Define your custom dark theme
+$my-app-primary: mat.define-palette(mat.$indigo-palette);
+$my-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-app-theme: mat.define-dark-theme((
+  color: (
+    primary: $my-app-primary,
+    accent: $my-app-accent,
+  )
+));
+
+// Include theme styles for core and each component used in your app
+@include mat.all-component-themes($my-app-theme);
+
+// Custom styles for your application
+body {
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color for better readability */
+  font-family: 'Montserrat', sans-serif; /* Use Montserrat font for all text */
+
+    background: linear-gradient(to right, #000, #333); /* Gradient from dark to slightly lighter */
+
+}
+
+.InputContainer {
+  max-width: 500px;
+  margin: 50px 0; /* Top margin 50px, bottom margin 0, left and right auto */
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #f1e4e4e3; /* Thicker border */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Light shadow */
+  background: linear-gradient(to right, #000, #333);
+  transition: border-color 0.3s; /* Smooth border color transition */
+}
+
+
+.InputContainer:hover {
+  border-color: #ff4081; /* Pink border color on hover */
+}
+
+
+
+.button {
+  padding: 8px 12px;
+  background-color: #ff4081; /* Primary color for buttons */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+
+
+
+
+.list-item {
+  color: #fff; /* Light text color for list items */
+}

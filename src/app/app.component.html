@@ -1,6 +1,6 @@
 <h1>{{ title }}</h1>
 
-<div class="container">
+<div class="InputContainer">
   <input class="input-field" type="text" [(ngModel)]="newListName" placeholder="Enter new list name">
   <select class="select-field" [(ngModel)]="selectedTag">
     <option value="">Category</option>
@@ -10,16 +10,18 @@
 </div>
 <div *ngIf="listAdded">
   <select class="select-field" [(ngModel)]="filterTag">
-    <option value="">Filter(none)</option>
+    <option value="">No Filter</option>
     <option *ngFor="let tag of tagOptions" [value]="tag">{{ tag }}</option>
   </select>
   <label>
-    <input type="checkbox" [(ngModel)]="filter" (change)="filterLists(filterTag)">Filter
+    <mat-slide-toggle [(ngModel)]="filter" (change)="filterLists(filterTag)">
+      Filter
+    </mat-slide-toggle>
   </label>
 </div>
 
-<div *ngFor="let list of filteredLists; let i = index" class="list-container">
-  <h2 (click)="selectList(i)">
+<div *ngFor="let list of filteredLists; let i = index" class="list-container" (click)="toggleList(i)">
+  <h2>
     {{ list.name }}
     <span class="tag" *ngIf="list.tag">({{ list.tag }})</span>
     - {{ list.items.length }} items
@@ -27,15 +29,21 @@
   <ul *ngIf="selectedListIndex === i">
     <li *ngFor="let item of list.items; let j = index">
       <div>
-        <app-list-item [item]="item" class="list-item"></app-list-item>
-        <button class="delete-button" (click)="deleteItem(i, j)">delete</button>
+  <app-list-item [item]="item" class="item-list-container" (click)="$event.stopPropagation()"></app-list-item>
+<button mat-icon-button class="delete-item-button" (click)="$event.stopPropagation(); deleteItem(i, j)">
+  <mat-icon>delete</mat-icon>
+</button>
+       
       </div>
     </li>
-    <li>
+    <li (click)="$event.stopPropagation()">
       <input class="input-field" type="text" [(ngModel)]="newItemText" placeholder="Enter new item">
       <input class="input-field" type="date" [(ngModel)]="newItemDueDate" placeholder="Due date">
-      <button class="button" (click)="addItem()">Add Item</button>
+      <button class="button" (click)="addItem($event)">Add Item</button>
     </li>
+    
   </ul>
-  <button class="delete-list-button" (click)="deleteList(i)">Delete List</button>
+  <button mat-icon-button class="delete-list-button" (click)="deleteList(i)" aria-label="Delete list">
+    <mat-icon>delete_outline</mat-icon>
+  </button>
 </div>

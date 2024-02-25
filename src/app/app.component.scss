@@ -1,0 +1,113 @@
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #ff4081;
+  transition: color 0.3s;
+}
+
+h1:hover {
+  color: #fff;
+}
+
+.tag {
+  font-size: 0.8em;
+  color: #ccc;
+}
+
+.input-field {
+  display: inline-block;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #444;
+  color: #fff;
+}
+
+.select-field {
+  display: inline-block;
+  font-size: 3;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  background-color: #555;
+  color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFFFFF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7 10l5 5 5-5z"></path></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px 16px;
+  width: 85px; /* Set a specific width for the select field */
+
+}
+
+.InputContainer {
+  max-width: 500px;
+  margin: 50px 0;
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid #f1e4e4e3;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to right, #000, #333);
+  transition: border-color 0.3s;
+}
+
+.InputContainer:hover {
+  border-color: #ff4081;
+}
+.list-container {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.list-container:hover {
+  background-color: #444;
+}
+
+.item-list-container {
+
+  display: inline-block;
+  margin-right: 5px;
+}
+.item-list-container:hover {
+  
+  background-color: #982b2b;
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+
+.delete-list-button {
+ visibility: hidden;
+}
+
+.list-container:hover .delete-list-button {
+visibility: visible;}
+
+.delete-item-button {
+  visibility: hidden;
+ }
+ 
+ 
