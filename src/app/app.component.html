@@ -30,7 +30,7 @@
     <li *ngFor="let item of list.items; let j = index">
       <div>
   <app-list-item [item]="item" class="item-list-container" (click)="$event.stopPropagation()"></app-list-item>
-<button mat-icon-button class="delete-item-button" (click)="$event.stopPropagation(); deleteItem(i, j)">
+<button mat-button class="delete-item-button" (click)="$event.stopPropagation(); deleteItem(i, j)">
   <mat-icon>delete</mat-icon>
 </button>
        

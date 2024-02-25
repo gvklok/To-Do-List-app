@@ -17,7 +17,6 @@ interface ListItem {
 })
 export class ItemComponent {
   @Input() item: ListItem;
-  @Output() toggle = new EventEmitter();
 
   constructor() {
     this.item = { text: '', completed: false };

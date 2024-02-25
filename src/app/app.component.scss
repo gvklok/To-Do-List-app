@@ -4,12 +4,12 @@ h1 {
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 20px;
-  color: #ff4081;
+  color: #fff;
   transition: color 0.3s;
 }
 
 h1:hover {
-  color: #fff;
+  color: #ff4081;
 }
 
 .tag {
@@ -45,20 +45,10 @@ h1:hover {
   background-repeat: no-repeat;
   background-position: right 8px center;
   background-size: 16px 16px;
-  width: 85px; /* Set a specific width for the select field */
+  width: 85px;
 
 }
 
-.InputContainer {
-  max-width: 500px;
-  margin: 50px 0;
-  padding: 20px;
-  border-radius: 20px;
-  border: 2px solid #f1e4e4e3;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  background: linear-gradient(to right, #000, #333);
-  transition: border-color 0.3s;
-}
 
 .InputContainer:hover {
   border-color: #ff4081;
@@ -80,12 +70,6 @@ h1:hover {
   display: inline-block;
   margin-right: 5px;
 }
-.item-list-container:hover {
-  
-  background-color: #982b2b;
-}
-
-
 
 @keyframes fadeIn {
   from {
@@ -106,6 +90,12 @@ h1:hover {
 .list-container:hover .delete-list-button {
 visibility: visible;}
 
+
+.list-container:hover .delete-list-button {
+  visibility: visible;}
+
+.list-container:hover .delete-item-button {
+    visibility: visible;}
 .delete-item-button {
   visibility: hidden;
  }
