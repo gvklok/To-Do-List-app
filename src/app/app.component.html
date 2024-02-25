@@ -1,32 +1,33 @@
 <h1>{{ title }}</h1>
 
-<div>
-  <input type="text" [(ngModel)]="newListName" placeholder="Enter new list name">
-  <select [(ngModel)]="selectedTag">
+<div class="container">
+  <input class="input-field" type="text" [(ngModel)]="newListName" placeholder="Enter new list name">
+  <select class="select-field" [(ngModel)]="selectedTag">
     <option value="">Category</option>
     <option *ngFor="let tag of tagOptions" [value]="tag">{{ tag }}</option>
   </select>
-  <button (click)="addList()">Add List</button>
-  <a routerLink="calendar" target="_top">View Calendar</a>
+  <button class="button" (click)="addList()">Add List</button>
+  <a class="link" routerLink="calendar" target="_top">View Calendar</a>
   <router-outlet></router-outlet>
 </div>
-<div *ngFor="let list of lists; let i = index">
+<div *ngFor="let list of lists; let i = index" class="list-container">
   <h2 (click)="selectList(i)">
     {{ list.name }}
     <span class="tag" *ngIf="list.tag">({{ list.tag }})</span>
     - {{ list.items.length }} items
-  </h2>  <ul *ngIf="selectedListIndex === i">
+  </h2>
+  <ul *ngIf="selectedListIndex === i">
     <li *ngFor="let item of list.items; let j = index">
       <div>
-        <app-list-item [item]="item" style="display: inline-block; margin-right: 5px;"></app-list-item>
-        <button style="display: inline-block;" (click)="deleteItem(i, j)">delete</button>
+        <app-list-item [item]="item" class="list-item"></app-list-item>
+        <button class="delete-button" (click)="deleteItem(i, j)">delete</button>
       </div>
     </li>
     <li>
-      <input type="text" [(ngModel)]="newItemText" placeholder="Enter new item">
-      <input type="date" [(ngModel)]="newItemDueDate" placeholder="Due date">
-      <button (click)="addItem()">Add Item</button>
+      <input class="input-field" type="text" [(ngModel)]="newItemText" placeholder="Enter new item">
+      <input class="input-field" type="date" [(ngModel)]="newItemDueDate" placeholder="Due date">
+      <button class="button" (click)="addItem()">Add Item</button>
     </li>
   </ul>
-  <button (click)="deleteList(i)">Delete List</button>
+  <button class="delete-list-button" (click)="deleteList(i)">Delete List</button>
 </div>

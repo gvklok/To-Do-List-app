@@ -3,7 +3,7 @@ import { ItemComponent } from './app-list-item/app-list-item.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import { ListService } from './list.service'; // Make sure this path is correct
 
 interface List {
   name: string;
@@ -44,6 +44,8 @@ export class AppComponent {
     "Family",
     "Friends"
   ];  selectedTag: string = '';
+
+  constructor(private listService: ListService) {}
 
   addList() {
     if (this.newListName) {
