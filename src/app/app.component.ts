@@ -3,12 +3,12 @@ import { ItemComponent } from './app-list-item/app-list-item.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
 
 
 interface List {
   name: string;
   items: ListItem[]; // Array of ListItem objects
+  tag?: string;
 }
 
 interface ListItem {
@@ -32,12 +32,25 @@ export class AppComponent {
   selectedListIndex: number = -1;
   newItemText: string = '';
   newItemDueDate: string = '';
+  newTag:string ='';
+  tagOptions: string[] = [
+    "Work",
+    "Personal",
+    "School",
+    "Health",
+    "Fitness",
+    "Shopping",
+    "Home",
+    "Family",
+    "Friends"
+  ];  selectedTag: string = '';
 
   addList() {
     if (this.newListName) {
-      const newList: List = { name: this.newListName, items: [] };
+      const newList: List = { name: this.newListName, items: [], tag: this.selectedTag };
       this.lists.push(newList);
       this.newListName = '';
+      this.selectedTag = ''; 
     }
   }
 

@@ -2,15 +2,20 @@
 
 <div>
   <input type="text" [(ngModel)]="newListName" placeholder="Enter new list name">
+  <select [(ngModel)]="selectedTag">
+    <option value="">Category</option>
+    <option *ngFor="let tag of tagOptions" [value]="tag">{{ tag }}</option>
+  </select>
   <button (click)="addList()">Add List</button>
   <a routerLink="calendar" target="_top">View Calendar</a>
   <router-outlet></router-outlet>
-
 </div>
-
 <div *ngFor="let list of lists; let i = index">
-  <h2 (click)="selectList(i)">{{ list.name }} - {{ list.items.length }} items</h2>
-  <ul *ngIf="selectedListIndex === i">
+  <h2 (click)="selectList(i)">
+    {{ list.name }}
+    <span class="tag" *ngIf="list.tag">({{ list.tag }})</span>
+    - {{ list.items.length }} items
+  </h2>  <ul *ngIf="selectedListIndex === i">
     <li *ngFor="let item of list.items; let j = index">
       <div>
         <app-list-item [item]="item" style="display: inline-block; margin-right: 5px;"></app-list-item>
