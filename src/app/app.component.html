@@ -8,12 +8,15 @@
   </select>
   <button class="button" (click)="addList()">Add List</button>
 </div>
-<select class="select-field" [(ngModel)]="filterTag" *ngIf="listAdded">
-  <option value="">Filter(none)</option>
-  <option *ngFor="let tag of tagOptions" [value]="tag">{{ tag }}</option>
-</select>
-<input type="checkbox" [(ngModel)]="filter" (change)="this.filterLists(this.filterTag);
-">Show Only Tagged Lists
+<div *ngIf="listAdded">
+  <select class="select-field" [(ngModel)]="filterTag">
+    <option value="">Filter(none)</option>
+    <option *ngFor="let tag of tagOptions" [value]="tag">{{ tag }}</option>
+  </select>
+  <label>
+    <input type="checkbox" [(ngModel)]="filter" (change)="filterLists(filterTag)">Filter
+  </label>
+</div>
 
 <div *ngFor="let list of filteredLists; let i = index" class="list-container">
   <h2 (click)="selectList(i)">

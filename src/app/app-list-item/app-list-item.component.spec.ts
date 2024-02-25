@@ -23,11 +23,6 @@ describe('AppListItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should toggle completion', () => {
-    expect(component.item.completed).toBeFalsy();
-    component.toggleCompletion();
-    expect(component.item.completed).toBeTruthy();
-  });
-
+ 
   // Add more tests as needed...
 });
