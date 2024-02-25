@@ -22,10 +22,6 @@ export class ItemComponent {
   constructor() {
     this.item = { text: '', completed: false };
   }
-
-  toggleCompletion() {
-    this.item.completed = !this.item.completed;
-  }
   
 
   isPastDue(dueDate: Date | undefined): boolean {

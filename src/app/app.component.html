@@ -7,10 +7,15 @@
     <option *ngFor="let tag of tagOptions" [value]="tag">{{ tag }}</option>
   </select>
   <button class="button" (click)="addList()">Add List</button>
-  <a class="link" routerLink="calendar" target="_top">View Calendar</a>
-  <router-outlet></router-outlet>
 </div>
-<div *ngFor="let list of lists; let i = index" class="list-container">
+<select class="select-field" [(ngModel)]="filterTag" *ngIf="listAdded">
+  <option value="">Filter(none)</option>
+  <option *ngFor="let tag of tagOptions" [value]="tag">{{ tag }}</option>
+</select>
+<input type="checkbox" [(ngModel)]="filter" (change)="this.filterLists(this.filterTag);
+">Show Only Tagged Lists
+
+<div *ngFor="let list of filteredLists; let i = index" class="list-container">
   <h2 (click)="selectList(i)">
     {{ list.name }}
     <span class="tag" *ngIf="list.tag">({{ list.tag }})</span>
