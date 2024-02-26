@@ -21,12 +21,5 @@ To get started with this project, follow these steps:
 2. Install dependencies using `npm install`
 3. Run the development server using `ng serve`
 4. Follow the link genreated or open your browser and navigate to `http://localhost:4200/`
-
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-
-
-
+ 
+      The application will automatically reload if you change any of the source files.
