@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 interface ListItem {
   text: string;
   completed: boolean;
+  //optional due date
   dueDate?: Date;
 }
 
@@ -18,22 +19,13 @@ interface ListItem {
 export class ItemComponent {
   @Input() item: ListItem;
 
+// Initialize the item property with default values since we aere getting them from input
   constructor() {
     this.item = { text: '', completed: false };
   }
   
-
+//returns true if due date passed
   isPastDue(dueDate: Date | undefined): boolean {
     return dueDate !== undefined && dueDate < new Date();
-  }
-
-  get dueDateColor(): string {
-    if (this.isPastDue(this.item.dueDate)) {
-      return 'red';
-    } else if (this.item.dueDate) {
-      return 'green';
-    } else {
-      return 'black'; // Default color for no due date
-    }
   }
 }

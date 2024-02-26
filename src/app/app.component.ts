@@ -21,6 +21,8 @@ interface ListItem {
 }
 
 @Component({
+  //all of these components are standalone since from my understanding its easier to manage by having multiple smalller
+  //components and its being used more in angular 17
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,7 +31,7 @@ interface ListItem {
 })
 export class AppComponent {
   title = 'Create a new to do list';
-
+  // Variables for managing new list creation
   lists: List[] = [];
   newListName: string = '';
   selectedListIndex: number = -1;
@@ -53,28 +55,26 @@ export class AppComponent {
   listAdded: boolean = false;
   filter: boolean = false;
 
+  //innitially filtered lists is all lists since we hae not applied any filters yet
   constructor() {
     this.filteredLists = [...this.lists];
   }
 
   addList() {
+    //only add a list if theres a name typed
     if (this.newListName) {
       const newList: List = { name: this.newListName, items: [], tag: this.selectedTag };
       this.lists.push(newList);
       this.newListName = '';
       this.selectedTag = '';
+      //keeping track if a list has been added so we can properly display like filter lists for example
       this.listAdded = true;
+      //filter list based on current filter
 this.filterLists(this.filterTag)
     }
   }
 
-  selectList(index: number) {
-    if (this.selectedListIndex === index) {
-      this.selectedListIndex = -1; // Deselect the list
-    } else {
-      this.selectedListIndex = index; // Select the clicked list
-    }
-  }
+  //this is selects a list by assigning selectedListIndex to the list index or -1 to deselect and essentially represent no list
   toggleList(index: number) {
     if (this.selectedListIndex === index) {
       this.selectedListIndex = -1; // Deselect the list
@@ -84,9 +84,9 @@ this.filterLists(this.filterTag)
   }
 
   addItem(event: Event) {
-    event.stopPropagation(); // Prevent event from propagating to parent
+    event.stopPropagation(); // Prevent event from propagating to parent(so stopping click from inside list item to deselect list)
 
-    if (this.newItemText && this.selectedListIndex !== -1) {
+    if (this.newItemText ) {
       const dueDate = this.newItemDueDate ? new Date(this.newItemDueDate) : undefined;
       this.lists[this.selectedListIndex].items.push({
         text: this.newItemText,

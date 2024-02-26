@@ -16,7 +16,7 @@ h1:hover {
   font-size: 0.8em;
   color: #ccc;
 }
-
+//box where you type
 .input-field {
   display: inline-block;
   padding: 8px;
@@ -27,6 +27,7 @@ h1:hover {
   color: #fff;
 }
 
+//complicated because imported dropdown was not working
 .select-field {
   display: inline-block;
   font-size: 3;
@@ -50,9 +51,7 @@ h1:hover {
 }
 
 
-.InputContainer:hover {
-  border-color: #ff4081;
-}
+//essentially what each list is held in
 .list-container {
   margin-top: 20px;
   padding: 10px;
@@ -60,7 +59,15 @@ h1:hover {
   transition: background-color 0.3s;
   animation: fadeIn 0.5s ease-in-out;
 }
-
+//allows lists container to fade in when added 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .list-container:hover {
   background-color: #444;
 }
@@ -70,19 +77,7 @@ h1:hover {
   display: inline-block;
   margin-right: 5px;
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-
-
-
+//the rest of these help the delete buttons ony appear when you hover over list container
 .delete-list-button {
  visibility: hidden;
 }
@@ -96,6 +91,7 @@ visibility: visible;}
 
 .list-container:hover .delete-item-button {
     visibility: visible;}
+
 .delete-item-button {
   visibility: hidden;
  }

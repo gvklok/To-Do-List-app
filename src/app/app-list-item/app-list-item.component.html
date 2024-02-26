@@ -1,4 +1,4 @@
-<div class="list-item" [ngClass]="{ 'past-due': isPastDue(item.dueDate) }">
+<div >
   <input type="checkbox" [(ngModel)]="item.completed"> 
   <span class="list-item-text" [style.color]="item.completed ? 'gray' : ''">{{ item.text }}</span>
   <span *ngIf="item.dueDate" [ngStyle]="{ color: item.completed ? 'gray' : (isPastDue(item.dueDate) ? 'red' : 'green'),  'font-size': '0.8em'}">
